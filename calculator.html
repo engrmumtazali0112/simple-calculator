@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Calculator</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #45a049;
+            --text-color: #333;
+            --input-background: rgba(255, 255, 255, 0.9);
+            --calculator-background: rgba(255, 255, 255, 0.8);
+            --shadow-color: rgba(0, 0, 0, 0.2);
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Full page background */
+        body {
+            background-image: url('https://images.pexels.com/photos/1227511/pexels-photo-1227511.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Calculator background */
+        .calculator {
+            background-image: url('https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px var(--shadow-color);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            text-align: center;
+            color: whitesmoke;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 1px 1px 2px var(--shadow-color);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, select, button {
+            margin: 10px 0;
+            padding: 12px;
+            border: 1px solid rgba(221, 221, 221, 0.5);
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: var(--input-background);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--input-background);
+            border-radius: 6px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: inset 0 2px 4px var(--shadow-color);
+        }
+
+        .error {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        @media (max-width: 480px) {
+            .calculator {
+                padding: 20px;
+            }
+
+            input, select, button {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Simple Calculator</h1>
+        <form method="post">
+            <input type="number" name="num1" placeholder="Enter first number" required>
+            <input type="number" name="num2" placeholder="Enter second number" required>
+            <select name="operation">
+                <option value="add">Add</option>
+                <option value="subtract">Subtract</option>
+                <option value="multiply">Multiply</option>
+                <option value="divide">Divide</option>
+            </select>
+            <button type="submit">Calculate</button>
+        </form>
+        {% if result is not none %}
+            <div class="result">
+                Result: {{ result }}
+            </div>
+        {% endif %}
+        {% if error %}
+            <div class="result error">
+                Error: {{ error }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
