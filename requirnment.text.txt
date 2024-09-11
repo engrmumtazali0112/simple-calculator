@@ -1,0 +1,11 @@
+mkdir simple_calculator
+cd simple_calculator
+
+python -m venv venv
+source venv/bin/activate  # for Linux/MacOS
+venv\Scripts\activate  # for Windows
+
+pip install flask gradio
+
+python app.py
+python calculator.py
